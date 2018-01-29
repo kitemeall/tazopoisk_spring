@@ -51,7 +51,7 @@ public class JpaConfig implements TransactionManagementConfigurer {
   public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
     entityManagerFactoryBean.setDataSource(configureDataSource());
-    entityManagerFactoryBean.setPackagesToScan("com.yourcompany");
+    entityManagerFactoryBean.setPackagesToScan("com.example.tazopoisk");
     entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
     Properties jpaProperties = new Properties();
