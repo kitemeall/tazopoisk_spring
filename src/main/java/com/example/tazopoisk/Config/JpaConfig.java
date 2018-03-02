@@ -37,7 +37,6 @@ public class JpaConfig implements TransactionManagementConfigurer {
 
   @Bean
   public DataSource configureDataSource() {
-
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName(driver);
     dataSource.setUrl(url);
