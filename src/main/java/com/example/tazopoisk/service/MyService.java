@@ -20,12 +20,20 @@ public class MyService {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public @ResponseBody
-    String test () {
+    User test () {
 
-        User me = new User(10, "Vasya", "Petrov");
+        User me = new User(null, "Vasya", "Petrov");
         dataRepository.persist(me);
+        return  me;
 
-        return "hello world! ";
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public @ResponseBody User go (@RequestBody User user) {
+
+        dataRepository.persist(user);
+        System.out.println(user);
+        return user;
     }
 
 
