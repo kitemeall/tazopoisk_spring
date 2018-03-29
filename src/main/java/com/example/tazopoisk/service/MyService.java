@@ -3,6 +3,7 @@ package com.example.tazopoisk.service;
 
 import com.example.tazopoisk.entity.User;
 import com.example.tazopoisk.repository.DataRepository;
+import com.example.tazopoisk.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,32 +20,30 @@ public class MyService {
     private  Integer a = 10;
 
     @Autowired
-    private DataRepository dataRepository;
+    private UserRepository dataRepository;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public @ResponseBody
     User test (@RequestParam(value = "name")String name ) {
 
         User me = new User(null, name, "Petrov");
-        dataRepository.persist(me);
+        dataRepository.save(me);
         LOG.log(Level.WARNING, "HELLO HOW ARE YOU?");
         return  me;
 
     }
 
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public @ResponseBody User go (@RequestBody User user) {
 
-        dataRepository.persist(user);
+        dataRepository.save(user);
         System.out.println(user);
         return user;
     }
 
-    @RequestMapping(value = "/int")
-    public @ResponseBody Integer inte () {
-
-        a ++;
-        return  a;
+    @RequestMapping(value = "/all")
+    public  Iterable<User> all () {
+        return dataRepository.findAll();
     }
 
 

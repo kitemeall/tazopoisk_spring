@@ -46,7 +46,7 @@ public class JpaConfig implements TransactionManagementConfigurer {
     return dataSource;
   }
 
-  @Bean
+  @Bean(name = "entityManagerFactory")
   public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
     LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
     entityManagerFactoryBean.setDataSource(configureDataSource());
@@ -61,7 +61,7 @@ public class JpaConfig implements TransactionManagementConfigurer {
     return entityManagerFactoryBean;
   }
 
-  @Bean
+  @Bean(name = "transactionManager")
   public PlatformTransactionManager annotationDrivenTransactionManager() {
     return new JpaTransactionManager();
   }
